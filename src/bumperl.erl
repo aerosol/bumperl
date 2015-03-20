@@ -122,10 +122,12 @@ s_save_app_file(S = #state{ app_file = AppFile, app_data = Data, bumped = Bumped
 
 s_maybe_commit(S = #state{ commit = false }) ->
     {ok, S};
-s_maybe_commit(S = #state{ app_file = AppFile, commit = true}) ->
+s_maybe_commit(S = #state{ app_file = AppFile, commit = true, bumped = Bumped}) ->
+    Vsn = binary_to_list(mouture:unparse(Bumped)),
     case run_cmd("git add "++AppFile) of
         {ok, _} ->
-            case run_cmd("git commit "++AppFile++" -m 'Bump version'") of
+            case run_cmd("git commit "++AppFile++" -m 'Bump version"
+                         " ("++Vsn++") [skip ci]'") of
                 {ok, _} ->
                     {ok, S};
                 {error, Reason} ->
