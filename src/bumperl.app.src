@@ -1,6 +1,6 @@
 {application,bumperl,
              [{description,"Semantic version bumper for Erlang/OTP apps"},
-              {vsn,"0.0.0"},
+              {vsn,"0.1.0"},
               {registered,[]},
               {applications,[kernel,stdlib]},
               {env,[]},
