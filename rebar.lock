@@ -1,0 +1,8 @@
+[{<<"getopt">>,
+  {git,"https://github.com/jcomellas/getopt.git",
+       {ref,"388dc95caa7fb97ec7db8cfc39246a36aba61bd8"}},
+  0},
+ {<<"mouture">>,
+  {git,"https://github.com/nox/mouture.git",
+       {ref,"06600acb128ff2a811c90cccd84af84259b563ad"}},
+  0}].
