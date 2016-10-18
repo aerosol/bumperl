@@ -103,12 +103,12 @@ s_parse_version(S = #state{app_data = [{application, _, D}]}) ->
             {error, {no_version_found, D}}
     end.
 
-s_bump_version(S = #state{current = {{Ma,Mi,Pa},Pre,Meta}, label = major}) ->
-    {ok, S#state{ bumped = {{Ma+1, Mi, Pa}, Pre, Meta}}};
-s_bump_version(S = #state{current = {{Ma,Mi,Pa},Pre,Meta}, label = minor}) ->
-    {ok, S#state{ bumped = {{Ma, Mi+1, Pa}, Pre, Meta}}};
+s_bump_version(S = #state{current = {{Ma,_,_},Pre,Meta}, label = major}) ->
+    {ok, S#state{bumped = {{Ma+1, 0, 0}, Pre, Meta}}};
+s_bump_version(S = #state{current = {{Ma,Mi,_},Pre,Meta}, label = minor}) ->
+    {ok, S#state{bumped = {{Ma, Mi+1, 0}, Pre, Meta}}};
 s_bump_version(S = #state{current = {{Ma,Mi,Pa},Pre,Meta}, label = patch}) ->
-    {ok, S#state{ bumped = {{Ma, Mi, Pa+1}, Pre, Meta}}};
+    {ok, S#state{bumped = {{Ma, Mi, Pa+1}, Pre, Meta}}};
 s_bump_version(#state{label = Unknown}) ->
     {error, {invalid_label, Unknown}}.
 
